@@ -14,20 +14,39 @@ namespace Com.MyCompany.MyGame
         private byte maxPlayerPerRoom = 8;
         #endregion
 
+        #region Private Methods
+
+        bool isConnecting;
+
         void Awake()
         {
             PhotonNetwork.AutomaticallySyncScene = true;
         }
         void Start()
         {
-            
+            progressLabel.SetActive(false);
+            controlPanel.SetActive(true);
         }
         void Update()
         {
             
         }
+
+        #endregion
+
+        #region Public Methods
+
+        [SerializeField]
+        private GameObject controlPanel;
+        [SerializeField]
+        private GameObject progressLabel;
+
         public void Connect()
         {
+            isConnecting = true;
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
+
             if (PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.JoinRandomRoom();
@@ -41,10 +60,15 @@ namespace Com.MyCompany.MyGame
         public override void OnConnectedToMaster()
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
-            PhotonNetwork.CreateRoom(null, new RoomOptions());
+            if(isConnecting)
+            {
+                PhotonNetwork.JoinRandomRoom();
+            }
         }
         public override void OnDisconnected(DisconnectCause cause)
         {
+            progressLabel.SetActive(false);
+            controlPanel.SetActive(true);
             Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
         }
 
@@ -57,6 +81,13 @@ namespace Com.MyCompany.MyGame
         public override void OnJoinedRoom()
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            {
+                Debug.Log("We load the 'Room for 1' ");
+                PhotonNetwork.LoadLevel("Room for 1");
+            }
         }
+
+        #endregion
     }
 }
