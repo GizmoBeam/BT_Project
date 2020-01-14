@@ -10,6 +10,17 @@ namespace Com.MyCompany.MyGame
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        #region Public Fields
+
+        public static GameManager Instance;
+
+        void Start()
+        {
+            Instance = this;
+        }
+
+        #endregion
+
         #region Private Methods
         void LoadArena()
         {
