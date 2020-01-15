@@ -6,11 +6,30 @@ using Photon.Pun;
 
 namespace Com.MyCompany.MyGame
 {
-    public class PlayerManager : MonoBehaviourPunCallbacks
+    public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
+        #region IPunObservable implementation
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if(stream.IsWriting)
+            {
+                stream.SendNext(IsFiring);
+                stream.SendNext(Health);
+            }
+            else
+            {
+                this.IsFiring = (bool)stream.ReceiveNext();
+                this.Health = (float)stream.ReceiveNext();
+            }
+        }
+
+        #endregion
+
         #region Public Fields
 
         public float Health = 1f;
+        public static GameObject LocalPlayerInstance;
 
         #endregion
 
@@ -24,6 +43,22 @@ namespace Com.MyCompany.MyGame
 
         #region MonoBehaviour CallBacks
 
+        #if !UNITY_5_4_OR_NEWER
+        void OnLevelWasLoaded(int level)
+        {
+            this.CalledOnLevelWasLoaded(level);
+        }   
+        #endif
+
+        void CalledOnLevelWasLoaded(int level)
+        {
+            // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
+            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+            {
+                transform.position = new Vector3(0f, 5f, 0f);
+            }
+        }
+
         void Awake()
         {
             if (beams == null)
@@ -34,11 +69,44 @@ namespace Com.MyCompany.MyGame
             {
                 beams.SetActive(false);
             }
+            if(photonView.IsMine)
+            {
+                PlayerManager.LocalPlayerInstance = this.gameObject;
+            }
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+
+        void Start()
+        {
+            CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
+            if(_cameraWork != null)
+            {
+                if(photonView.IsMine)
+                {
+                    _cameraWork.OnStartFollowing();
+                }
+            }
+            else
+            {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
+            }
+
+            #if Unity_5_4_OR_NEWER
+            UnityEngine.SceneManagerment.SceneManager.sceneLoaded += (scene, loadingMode) =>
+            {
+                this.CalledOnLevelWasLoaded(scene.buildIndex);
+            };
+            #endif
         }
 
         void Update()
         {
-            ProcessInputs();
+            if (photonView.IsMine)
+            {
+                ProcessInputs();
+            }
+
             if (Health <= 0f)
             {
                 GameManager.Instance.LeaveRoom();

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Com.MyCompany.MyGame
 {
-    public class PlayerAnimatorManager : MonoBehaviour
+    public class PlayerAnimatorManager : MonoBehaviourPun
     {
         #region Private Fields
         
@@ -28,6 +29,11 @@ namespace Com.MyCompany.MyGame
 
         void Update()
         {
+            if(!photonView.IsMine && PhotonNetwork.IsConnected)
+            {
+                return;
+            }
+
             if(!animator)
             {
                 return;
