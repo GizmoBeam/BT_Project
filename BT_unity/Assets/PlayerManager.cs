@@ -15,10 +15,12 @@ namespace Com.MyCompany.MyGame
             if(stream.IsWriting)
             {
                 stream.SendNext(Health);
+                stream.SendNext(currSpeed);
             }
             else
             {
                 this.Health = (float)stream.ReceiveNext();
+                this.currSpeed = (float)stream.ReceiveNext();
             }
         }
 
@@ -41,7 +43,6 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private GameObject beams;
 
-        private Camera mainCamera;
         private CharacterController characterController;
         private Animator animator;
 
@@ -105,8 +106,6 @@ namespace Com.MyCompany.MyGame
                 Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
             }
 
-            mainCamera = Camera.main;
-
             #if Unity_5_4_OR_NEWER
             UnityEngine.SceneManagerment.SceneManager.sceneLoaded += (scene, loadingMode) =>
             {
@@ -120,11 +119,11 @@ namespace Com.MyCompany.MyGame
             if (photonView.IsMine)
             {
                 ProcessInputs();
-            }
 
-            transform.rotation = Quaternion.LookRotation(dir);
-            characterController.Move(dir * currSpeed * Time.deltaTime);
-            animator.SetFloat("Speed", currSpeed);
+                transform.rotation = Quaternion.LookRotation(dir);
+                characterController.Move(dir * currSpeed * Time.deltaTime);
+                animator.SetFloat("Speed", currSpeed);
+            }
 
             if (Health <= 0f)
             {
@@ -173,7 +172,7 @@ namespace Com.MyCompany.MyGame
         {
             if (Input.GetMouseButton(MouseRight))
             {
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {

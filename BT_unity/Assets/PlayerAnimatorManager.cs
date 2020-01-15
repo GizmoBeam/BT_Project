@@ -29,7 +29,7 @@ namespace Com.MyCompany.MyGame
 
         void Update()
         {
-            if(!photonView.IsMine && PhotonNetwork.IsConnected)
+            if(photonView.IsMine == false && PhotonNetwork.IsConnected == true)
             {
                 return;
             }

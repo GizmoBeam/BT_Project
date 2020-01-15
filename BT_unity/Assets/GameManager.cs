@@ -79,6 +79,7 @@ namespace Com.MyCompany.MyGame
                 LoadArena();
             }
         }
+
         #endregion
 
         #region Public Methods
