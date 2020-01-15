@@ -23,6 +23,9 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private bool followOnStart = false;
 
+        [SerializeField]
+        float speed = 20f;
+
         Transform cameraTransform;
         bool isFollowing;
         private float heightVelocity;
@@ -50,6 +53,21 @@ namespace Com.MyCompany.MyGame
             if (isFollowing)
             {
                 Apply();
+            }
+
+            float scroll = -Input.GetAxis("Mouse ScrollWheel") * speed;
+
+            if(Camera.main.fieldOfView <= 20f && scroll < 0)
+            {
+                Camera.main.fieldOfView = 20f;
+            }
+            else if(Camera.main.fieldOfView >= 60f && scroll > 0)
+            {
+                Camera.main.fieldOfView = 60f;
+            }
+            else
+            {
+                Camera.main.fieldOfView += scroll;
             }
         }
 
