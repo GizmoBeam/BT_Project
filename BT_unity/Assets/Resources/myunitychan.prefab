@@ -5288,11 +5288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958d085916280c748b406d239775fc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
-  height: 2
+  distance: 3
+  height: 6
   heightSmoothLag: 0.3
   centerOffset: {x: 0, y: 1, z: 0}
-  followOnStart: 0
+  followOnStart: 1
 --- !u!114 &5512716535820430867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5306,6 +5306,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 1
+  maxSpeed: 3
+  aclrt: 3
   beams: {fileID: 0}
 --- !u!114 &15590948
 MonoBehaviour:
@@ -5342,6 +5344,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 15590948}
   - {fileID: 3642330369654146391}
+  - {fileID: 5512716535820430867}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

@@ -49,16 +49,17 @@ namespace Com.MyCompany.MyGame
                 }
             }
 
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
+            //float h = Input.GetAxis("Horizontal");
+            //float v = Input.GetAxis("Vertical");
             
-            if(v < 0)
-            {
-                v = 0;
-            }
-            animator.SetFloat("Speed", h * h + v * v);
-            animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+            //if(v < 0)
+            //{
+            //    v = 0;
+            //}
+            //animator.SetFloat("Speed", h * h + v * v);
+            //animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
         }
+
         #endregion
     }
 }

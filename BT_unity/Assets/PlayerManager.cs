@@ -14,12 +14,10 @@ namespace Com.MyCompany.MyGame
         {
             if(stream.IsWriting)
             {
-                stream.SendNext(IsFiring);
                 stream.SendNext(Health);
             }
             else
             {
-                this.IsFiring = (bool)stream.ReceiveNext();
                 this.Health = (float)stream.ReceiveNext();
             }
         }
@@ -31,13 +29,27 @@ namespace Com.MyCompany.MyGame
         public float Health = 1f;
         public static GameObject LocalPlayerInstance;
 
+        [SerializeField]
+        public float maxSpeed = 20f;
+        [SerializeField]
+        public float aclrt = 5f;
+
         #endregion
 
         #region Private Fields
 
         [SerializeField]
         private GameObject beams;
-        bool IsFiring;
+
+        private Camera mainCamera;
+        private CharacterController characterController;
+        private Animator animator;
+
+        bool IsMoving;
+        Vector3 targetPos;
+        Vector3 dir;
+        float distance;
+        float currSpeed;
 
         #endregion
 
@@ -52,7 +64,6 @@ namespace Com.MyCompany.MyGame
 
         void CalledOnLevelWasLoaded(int level)
         {
-            // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
             if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
             {
                 transform.position = new Vector3(0f, 5f, 0f);
@@ -73,14 +84,16 @@ namespace Com.MyCompany.MyGame
             {
                 PlayerManager.LocalPlayerInstance = this.gameObject;
             }
-
             DontDestroyOnLoad(this.gameObject);
         }
 
         void Start()
         {
             CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
-            if(_cameraWork != null)
+            characterController = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
+
+            if (_cameraWork != null)
             {
                 if(photonView.IsMine)
                 {
@@ -91,6 +104,8 @@ namespace Com.MyCompany.MyGame
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
             }
+
+            mainCamera = Camera.main;
 
             #if Unity_5_4_OR_NEWER
             UnityEngine.SceneManagerment.SceneManager.sceneLoaded += (scene, loadingMode) =>
@@ -107,14 +122,13 @@ namespace Com.MyCompany.MyGame
                 ProcessInputs();
             }
 
+            transform.rotation = Quaternion.LookRotation(dir);
+            characterController.Move(dir * currSpeed * Time.deltaTime);
+            animator.SetFloat("Speed", currSpeed);
+
             if (Health <= 0f)
             {
                 GameManager.Instance.LeaveRoom();
-            }
-
-            if (beams != null && IsFiring != beams.activeInHierarchy)
-            {
-                beams.SetActive(IsFiring);
             }
         }
 
@@ -151,21 +165,28 @@ namespace Com.MyCompany.MyGame
 
         #region Custom
 
+        const int MouseLeft = 0;
+        const int MouseRight = 1;
+        const int MouseWheel = 2;
+
         void ProcessInputs()
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetMouseButton(MouseRight))
             {
-                if (!IsFiring)
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    IsFiring = true;
+                    targetPos = hit.point;
+                    dir = Vector3.Normalize(targetPos - transform.position);
+                    dir.y = 0f;
+                    currSpeed = Mathf.Clamp(currSpeed += aclrt * Time.deltaTime, 0f, maxSpeed);
                 }
+                IsMoving = true;
             }
-            if (Input.GetButtonUp("Fire1"))
+            else
             {
-                if (IsFiring)
-                {
-                    IsFiring = false;
-                }
+                currSpeed = Mathf.Clamp(currSpeed -= aclrt * Time.deltaTime, 0f, maxSpeed);
             }
         }
 

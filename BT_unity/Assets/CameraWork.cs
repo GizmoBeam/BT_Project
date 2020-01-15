@@ -74,7 +74,7 @@ namespace Com.MyCompany.MyGame
             float originalTargetAngle = transform.eulerAngles.y;
             float currentAngle = cameraTransform.eulerAngles.y;
             float targetAnggle = originalTargetAngle;
-            currentAngle = targetAnggle;
+            //currentAngle = targetAnggle;
             targetHeight = targetCenter.y + height;
 
             float currentHeight = cameraTransform.position.y;
