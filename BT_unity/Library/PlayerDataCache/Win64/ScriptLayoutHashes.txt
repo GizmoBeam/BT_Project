@@ -4,6 +4,7 @@ C:/Users/dkekf/Desktop/BT_Project/BT_unity/Temp/BT_unity.exe
 SceneListBegin?
 Assets/Scenes/Launcher.unity
 Assets/Scenes/Room for 1.unity
+Assets/Scenes/Lobby.unity
 SceneListEnd?
 71bb6a6b6c8f052f948db64c7dd3ca4f PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PunTeams
 ab039a385ef4459756519a3fe91dccc6 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.SmoothSyncMovement
@@ -153,7 +154,7 @@ dec38e8c0473fb4fec0ed35c638b5a5b Assembly-CSharp.dll:UnityChan.SpringManager
 5af5a38642aaa0bd29718de32dc06f1f PhotonUnityNetworking.dll:Photon.Pun.ServerSettings
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:UnityChan.SplashScreen
 4fe8955e1c662935371b0936cafbb89b PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.TextButtonTransition
-0b24359b178f2110b72f9b386ac3b17c Assembly-CSharp.dll:Com.MyCompany.MyGame.CameraWork
+67d23e324f72111214fc5ec72bd95515 Assembly-CSharp.dll:Com.MyCompany.MyGame.CameraWork
 bf4698a3b70ae92d7166ab31c3de7991 Assembly-CSharp.dll:UnityChan.SpringCollider
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -213,3 +214,4 @@ d9864ada3db659b8d6f66a20aff414b3 PhotonUnityNetworking.dll:Photon.Pun.PhotonView
 87207d40b89ca632396b05b3cb1e69b0 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PlayerNumbering
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerNameInputField
 c8283c7732e3b6aa70d28f1fed4430ca PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.CountdownTimer
+6f03658bd978d69b434be12bd2ede7d2 Assembly-CSharp.dll:Com.MyCompany.MyGame.Lobby
