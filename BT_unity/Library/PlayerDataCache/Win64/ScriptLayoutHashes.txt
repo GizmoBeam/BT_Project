@@ -4,7 +4,6 @@ C:/Users/dkekf/Desktop/BT_Project/BT_unity/Temp/BT_unity.exe
 SceneListBegin?
 Assets/Scenes/Launcher.unity
 Assets/Scenes/Room for 1.unity
-Assets/Scenes/Lobby.unity
 SceneListEnd?
 71bb6a6b6c8f052f948db64c7dd3ca4f PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PunTeams
 ab039a385ef4459756519a3fe91dccc6 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.SmoothSyncMovement
@@ -94,7 +93,7 @@ fc108ce7d98c40ac0907e8ca7f500c76 UnityEngine.UI.dll:UnityEngine.UI.Text
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-716016ce5de14c14fcebefcfd984faf0 Assembly-CSharp.dll:Com.MyCompany.MyGame.Launcher
+55d9a1b652d7517e0b8e72f4e0b6c13c Assembly-CSharp.dll:Com.MyCompany.MyGame.Launcher
 ab0d50a7d312400076be587269334d44 Assembly-CSharp.dll:UnityChan.AutoBlink
 11df54cb47bd74c537f3c732a94ea97d PhotonUnityNetworking.dll:Photon.Pun.PhotonHandler
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -137,6 +136,7 @@ e7aa62e1f291228958626e122c23c8f0 PhotonUnityNetworking.Utilities.dll:Photon.Pun.
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
 b0cc2c55d3c0b24f7f6811c7913c0a16 Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerManager
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
+6f03658bd978d69b434be12bd2ede7d2 Assembly-CSharp.dll:Com.MyCompany.MyGame.Lobby
 8dd97b7e07915c183f8454a86716d325 Assembly-CSharp.dll:UnityChan.CameraController
 85045a1c02a413b343339373cf8e5d0b Assembly-CSharp.dll:UnityChan.IdleChanger
 d1f07c9e64b7817e6271f80bb03de25f Assembly-CSharp.dll:Com.MyCompany.MyGame.GameManager
@@ -214,4 +214,3 @@ d9864ada3db659b8d6f66a20aff414b3 PhotonUnityNetworking.dll:Photon.Pun.PhotonView
 87207d40b89ca632396b05b3cb1e69b0 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PlayerNumbering
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerNameInputField
 c8283c7732e3b6aa70d28f1fed4430ca PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.CountdownTimer
-6f03658bd978d69b434be12bd2ede7d2 Assembly-CSharp.dll:Com.MyCompany.MyGame.Lobby
