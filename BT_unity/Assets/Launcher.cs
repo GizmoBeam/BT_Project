@@ -83,30 +83,51 @@ namespace Com.MyCompany.MyGame
 
 
         #region 서버연결
-        void Awake() => Screen.SetResolution(960, 540, false);
+        void Awake()
+        {
+            if(PhotonNetwork.IsMasterClient)
+                PhotonNetwork.AllocateSceneViewID(photonView);
+        }
 
         void Update()
         {
-            StatusText.text = PhotonNetwork.NetworkClientState.ToString();
-            LobbyInfoText.text = (PhotonNetwork.CountOfPlayers - PhotonNetwork.CountOfPlayersInRooms) + "로비 / " + PhotonNetwork.CountOfPlayers + "접속";
             if(PhotonNetwork.InRoom)
             {
                 if(Input.GetKeyUp(KeyCode.Return))
                 {
-                    Send();
+                    if (ChatInput.text == "")
+                    {
+                        ChatInput.Select();
+                    }
+                    else
+                    {
+                        Send();
+                    }
                 }
+            }
+            else
+            {
+                StatusText.text = PhotonNetwork.NetworkClientState.ToString();
+                LobbyInfoText.text = (PhotonNetwork.CountOfPlayers - PhotonNetwork.CountOfPlayersInRooms) + "로비 / " + PhotonNetwork.CountOfPlayers + "접속";
             }
         }
 
-        public void Connect() => PhotonNetwork.ConnectUsingSettings();
+        public void Connect()
+        {
+            if(!PhotonNetwork.IsConnected)
+                PhotonNetwork.ConnectUsingSettings();
+        }
 
-        public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
+        public override void OnConnectedToMaster()
+        {
+            PhotonNetwork.JoinLobby();
+        }
 
         public override void OnJoinedLobby()
         {
             LobbyPanel.SetActive(true);
             RoomPanel.SetActive(false);
-            if (NickNameInput.text != null)
+            if (NickNameInput.text != "")
                 PhotonNetwork.LocalPlayer.NickName = NickNameInput.text;
             else
                 PhotonNetwork.LocalPlayer.NickName = "DPM";
@@ -125,7 +146,14 @@ namespace Com.MyCompany.MyGame
 
 
         #region 방
-        public void CreateRoom() => PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });
+        public void CreateRoom()
+        {
+            if (PhotonNetwork.InLobby)
+            {
+                PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });
+                RoomInput.text = "";
+            }
+        }
 
         public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
 
@@ -139,7 +167,12 @@ namespace Com.MyCompany.MyGame
             for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
         }
 
-        public override void OnCreateRoomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
+        public override void OnCreateRoomFailed(short returnCode, string message) 
+        {
+            RoomInput.text = ""; 
+            if(!PhotonNetwork.InRoom)
+                CreateRoom(); 
+        }
 
         public override void OnJoinRandomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
 
