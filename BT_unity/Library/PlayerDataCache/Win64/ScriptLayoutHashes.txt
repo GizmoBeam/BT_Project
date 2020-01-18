@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/dkekf/Desktop/BT_Project/BT_unity/Temp/BT_unity.exe
+C:/Users/dkekf/Desktop/BT_Project/BT_unity/build/BT_unity.exe
 SceneListBegin?
 Assets/Scenes/Launcher.unity
 Assets/Scenes/Room for 1.unity
