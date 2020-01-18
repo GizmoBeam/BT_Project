@@ -35,5 +35,6 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - ChatRPC
+  - GameStartRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -85,7 +85,7 @@ namespace Com.MyCompany.MyGame
         #region Public Methods
         public void LeaveRoom()
         {
-            PhotonNetwork.LoadLevel("Lobby");
+            PhotonNetwork.LoadLevel("Laucher");
         }
         #endregion
     }

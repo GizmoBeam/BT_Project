@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 472}
   m_MaxSize: {x: 12008, y: 12072}
   vertical: 0
-  controlID: 75
+  controlID: 94
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,8 +161,8 @@ MonoBehaviour:
     y: 0
     width: 398
     height: 1291
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 472}
   m_MaxSize: {x: 4004, y: 12072}
   vertical: 1
-  controlID: 76
+  controlID: 95
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,8 +241,8 @@ MonoBehaviour:
     y: 773
     width: 1597
     height: 518
-  m_MinSize: {x: 104, y: 124}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 17}
@@ -388,7 +388,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d0fbffff26330000
+      m_ExpandedIDs: 6eddffff90ddffff2adfffff34dfffff54f0ffff76f0ffff1af2ffff24f2ffff60f8ffffd4fbffffd6fbffff7816000092160000224300003c4300002e58000090580000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -648,7 +648,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a62c0000
     m_LastClickedID: 11430
-    m_ExpandedIDs: 0000000046270000ca290000902b0000c62b000000ca9a3b
+    m_ExpandedIDs: 00000000980a00001c0d0000e20e0000180f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -676,7 +676,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000046270000ca290000902b0000c62b0000
+    m_ExpandedIDs: 00000000980a00001c0d0000e20e0000180f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 13136
+  m_LastSelectedObjectID: 19414
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52

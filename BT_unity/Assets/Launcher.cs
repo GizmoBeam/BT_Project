@@ -28,6 +28,7 @@ namespace Com.MyCompany.MyGame
         public Text RoomInfoText;
         public Text[] ChatText;
         public InputField ChatInput;
+        public Button StartButton;
 
         [Header("ETC")]
         public Text StatusText;
@@ -146,12 +147,25 @@ namespace Com.MyCompany.MyGame
 
 
         #region 방
+
+        public void GameStart()
+        {
+            PV.RPC("GameStartRPC", RpcTarget.All, "Room for 1");
+        }
+
+        [PunRPC]
+        void GameStartRPC(string sceneName)
+        {
+            PhotonNetwork.LoadLevel(sceneName);
+        }
+
         public void CreateRoom()
         {
             if (PhotonNetwork.InLobby)
             {
                 PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });
                 RoomInput.text = "";
+                StartButton.gameObject.SetActive(true);
             }
         }
 
@@ -195,6 +209,7 @@ namespace Com.MyCompany.MyGame
                 ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
             RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
+
         #endregion
 
 
@@ -202,7 +217,7 @@ namespace Com.MyCompany.MyGame
         public void Send()
         {
             string msg = PhotonNetwork.NickName + " : " + ChatInput.text;
-            PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
+            PV.RPC("ChatRPC", RpcTarget.All, msg);
             ChatInput.text = "";
         }
 
