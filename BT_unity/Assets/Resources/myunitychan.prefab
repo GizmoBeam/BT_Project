@@ -5292,7 +5292,7 @@ MonoBehaviour:
   height: 6
   heightSmoothLag: 0.3
   centerOffset: {x: 0, y: 1, z: 0}
-  followOnStart: 0
+  followOnStart: 1
   speed: 20
 --- !u!114 &5512716535820430867
 MonoBehaviour:
@@ -5306,10 +5306,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245c90156e1df3b42847216330ad0219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 1
-  maxSpeed: 3
+  curr_Hp: 0
+  curr_Mp: 0
+  maxSpeed: 5
   aclrt: 3
-  beams: {fileID: 0}
+  Lv: 1
+  max_Hp: 500
+  max_Mp: 250
+  max_Exp: 100
+  Atk: 10
+  Def: 2
+  Str: 5
+  Dex: 5
+  Int: 5
+  Main_Stat: 0
+  Str_per_LV: 1.5
+  Dex_per_LV: 1.5
+  Int_per_LV: 1.5
+  Attack_Speed: 1.5
 --- !u!114 &15590949
 MonoBehaviour:
   m_ObjectHideFlags: 0
