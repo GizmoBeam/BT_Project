@@ -85,6 +85,9 @@ namespace Com.MyCompany.MyGame
         private CharacterController characterController;
         private Animator animator;
 
+        [SerializeField]
+        private GameObject playerUiPrefab;
+
         Vector3 targetPos;
         Vector3 dir;
         float currSpeed;
@@ -136,6 +139,8 @@ namespace Com.MyCompany.MyGame
             {
                 transform.position = new Vector3(0f, 5f, 0f);
             }
+            GameObject _uiGo = Instantiate(this.playerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
 
         void Awake()
@@ -167,6 +172,19 @@ namespace Com.MyCompany.MyGame
                 Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
             }
 
+            if (!photonView.IsMine)
+            {
+                if (playerUiPrefab != null)
+                {
+                    GameObject _uiGo = Instantiate(playerUiPrefab);
+                    _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+                }
+                else
+                {
+                    Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+                }
+            }
+
             #if Unity_5_4_OR_NEWER
             UnityEngine.SceneManagerment.SceneManager.sceneLoaded += (scene, loadingMode) =>
             {
@@ -177,14 +195,14 @@ namespace Com.MyCompany.MyGame
 
         void Update()
         {
-            //if (photonView.IsMine)
-            //{
+            if (photonView.IsMine)
+            {
                 ProcessInputs();
 
                 transform.rotation = Quaternion.LookRotation(dir);
                 characterController.Move(dir * currSpeed * Time.deltaTime);
                 animator.SetFloat("Speed", currSpeed);
-            //}
+            }
 
             if (curr_Hp <= 0f)
             {

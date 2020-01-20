@@ -5,3 +5,6 @@ sceneSetups:
 - path: Assets/Scenes/Room for 1.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/Scenes/modeltest.unity
+  isLoaded: 0
+  isActive: 0

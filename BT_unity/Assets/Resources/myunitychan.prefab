@@ -5292,7 +5292,7 @@ MonoBehaviour:
   height: 6
   heightSmoothLag: 0.3
   centerOffset: {x: 0, y: 1, z: 0}
-  followOnStart: 1
+  followOnStart: 0
   speed: 20
 --- !u!114 &5512716535820430867
 MonoBehaviour:
@@ -5324,6 +5324,8 @@ MonoBehaviour:
   Dex_per_LV: 1.5
   Int_per_LV: 1.5
   Attack_Speed: 1.5
+  playerUiPrefab: {fileID: 9070472415183740164, guid: c7ae469ac839374479e7ebf0566c9b58,
+    type: 3}
 --- !u!114 &15590949
 MonoBehaviour:
   m_ObjectHideFlags: 0

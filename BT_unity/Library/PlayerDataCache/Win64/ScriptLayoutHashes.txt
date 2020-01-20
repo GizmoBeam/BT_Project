@@ -134,7 +134,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 e7aa62e1f291228958626e122c23c8f0 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.ConnectAndJoinRandom
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
-b0cc2c55d3c0b24f7f6811c7913c0a16 Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerManager
+1c239645533cb6bba23db053fe350905 Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerManager
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 8dd97b7e07915c183f8454a86716d325 Assembly-CSharp.dll:UnityChan.CameraController
 85045a1c02a413b343339373cf8e5d0b Assembly-CSharp.dll:UnityChan.IdleChanger
@@ -213,3 +213,4 @@ d9864ada3db659b8d6f66a20aff414b3 PhotonUnityNetworking.dll:Photon.Pun.PhotonView
 87207d40b89ca632396b05b3cb1e69b0 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PlayerNumbering
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerNameInputField
 c8283c7732e3b6aa70d28f1fed4430ca PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.CountdownTimer
+6d1dc3b46f39c34172c90a059238e243 Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerUI
