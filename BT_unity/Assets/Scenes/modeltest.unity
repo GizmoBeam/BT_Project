@@ -425,10 +425,5 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6045864366623424798, guid: 131ff42cdecf9c24e9d3b7d7f744d7fb,
-        type: 3}
-      propertyPath: followOnStart
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 131ff42cdecf9c24e9d3b7d7f744d7fb, type: 3}

@@ -5324,7 +5324,7 @@ MonoBehaviour:
   Dex_per_LV: 1.5
   Int_per_LV: 1.5
   Attack_Speed: 1.5
-  playerUiPrefab: {fileID: 9070472415183740164, guid: c7ae469ac839374479e7ebf0566c9b58,
+  objectHpUiPrefab: {fileID: 9070472415183740164, guid: c7ae469ac839374479e7ebf0566c9b58,
     type: 3}
 --- !u!114 &15590949
 MonoBehaviour:

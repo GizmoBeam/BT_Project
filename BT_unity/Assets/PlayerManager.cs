@@ -39,6 +39,20 @@ namespace Com.MyCompany.MyGame
 
         #endregion
 
+        #region Public Methods
+
+        public float GetMaxHp()
+        {
+            return max_Hp;
+        }
+
+        public float GetMaxMp()
+        {
+            return max_Mp;
+        }
+
+        #endregion
+
         #region SerializeField
 
         [SerializeField]
@@ -86,7 +100,7 @@ namespace Com.MyCompany.MyGame
         private Animator animator;
 
         [SerializeField]
-        private GameObject playerUiPrefab;
+        private GameObject objectHpUiPrefab;
 
         Vector3 targetPos;
         Vector3 dir;
@@ -139,7 +153,7 @@ namespace Com.MyCompany.MyGame
             {
                 transform.position = new Vector3(0f, 5f, 0f);
             }
-            GameObject _uiGo = Instantiate(this.playerUiPrefab);
+            GameObject _uiGo = Instantiate(this.objectHpUiPrefab);
             _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
 
@@ -174,14 +188,14 @@ namespace Com.MyCompany.MyGame
 
             if (!photonView.IsMine)
             {
-                if (playerUiPrefab != null)
+                if (objectHpUiPrefab != null)
                 {
-                    GameObject _uiGo = Instantiate(playerUiPrefab);
+                    GameObject _uiGo = Instantiate(objectHpUiPrefab);
                     _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
                 }
                 else
                 {
-                    Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+                    Debug.LogWarning("<Color=Red><a>Missing</a></Color> ObjectHpUiPrefab reference on player Prefab.", this);
                 }
             }
 
@@ -258,6 +272,10 @@ namespace Com.MyCompany.MyGame
             else
             {
                 currSpeed = Mathf.Clamp(currSpeed -= aclrt * Time.deltaTime, 0f, maxSpeed);
+            }
+            if(Input.GetKeyUp(KeyCode.Alpha1))
+            {
+                curr_Hp -= 10;
             }
         }
 
