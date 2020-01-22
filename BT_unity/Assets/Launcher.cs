@@ -193,13 +193,13 @@ namespace Com.MyCompany.MyGame
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             RoomRenewal();
-            PV.RPC("ChatRPC", RpcTarget.All, "<color=yellow>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
+            PV.RPC("ChatRPC", RpcTarget.All, "<color=red>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             RoomRenewal();
-            PV.RPC("ChatRPC", RpcTarget.All, "<color=yellow>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
+            PV.RPC("ChatRPC", RpcTarget.All, "<color=red>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
         }
 
         void RoomRenewal()

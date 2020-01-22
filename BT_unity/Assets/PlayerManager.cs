@@ -19,7 +19,7 @@ namespace Com.MyCompany.MyGame
             }
             else
             {
-                this.curr_Hp = (float)stream.ReceiveNext();
+                this.curr_Hp = (int)stream.ReceiveNext();
                 this.currSpeed = (float)stream.ReceiveNext();
             }
         }
@@ -29,8 +29,9 @@ namespace Com.MyCompany.MyGame
         #region Public Fields
         public static GameObject LocalPlayerInstance;
 
-        public float curr_Hp;
-        public float curr_Mp;
+        public int curr_Hp;
+        public int curr_Mp;
+        public int curr_Exp = 0;
 
         [SerializeField]
         public float maxSpeed = 5f;
@@ -41,14 +42,24 @@ namespace Com.MyCompany.MyGame
 
         #region Public Methods
 
-        public float GetMaxHp()
+        public int GetMaxHp()
         {
             return max_Hp;
         }
 
-        public float GetMaxMp()
+        public int GetMaxMp()
         {
             return max_Mp;
+        }
+        
+        public int GetMaxExp()
+        {
+            return max_Exp;
+        }
+
+        public int GetLevel()
+        {
+            return Lv;
         }
 
         #endregion
@@ -58,9 +69,9 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         int Lv = 1;
         [SerializeField]
-        float max_Hp = 500f;
+        int max_Hp = 500;
         [SerializeField]
-        float max_Mp = 250f;
+        int max_Mp = 250;
         [SerializeField]
         int max_Exp = 100;
         [SerializeField]
@@ -86,7 +97,7 @@ namespace Com.MyCompany.MyGame
         #endregion
 
         #region Private Method
-        int curr_Exp = 0;
+        private int max_Lv = 200;
 
         float additional_Atk;
         float additional_Def;
@@ -108,8 +119,8 @@ namespace Com.MyCompany.MyGame
 
         void Init()
         {
-            max_Hp += Str * 25f;
-            max_Mp += Int * 20f;
+            max_Hp += (int)Str * 25;
+            max_Mp += (int)Int * 20;
 
             curr_Hp = max_Hp;
             curr_Mp = max_Mp;
@@ -132,6 +143,8 @@ namespace Com.MyCompany.MyGame
             Str += Str_per_LV;
             Dex += Dex_per_LV;
             Int += Int_per_LV;
+            max_Hp += (int)Str_per_LV * 25;
+            max_Mp += (int)Int_per_LV * 25; 
             curr_Exp -= max_Exp;
             max_Exp += Lv * 100;
         }
@@ -233,8 +246,6 @@ namespace Com.MyCompany.MyGame
             {
                 return;
             }
-
-            curr_Hp -= 0.1f;
         }
 
         void OnTriggerStay(Collider other)
@@ -243,8 +254,6 @@ namespace Com.MyCompany.MyGame
             {
                 return;
             }
-            
-            curr_Hp -= 0.1f * Time.deltaTime;
         }
 
         #endregion
@@ -276,6 +285,10 @@ namespace Com.MyCompany.MyGame
             if(Input.GetKeyUp(KeyCode.Alpha1))
             {
                 curr_Hp -= 10;
+            }
+            if(Input.GetKeyUp(KeyCode.Alpha2))
+            {
+                curr_Exp += 100;
             }
         }
 

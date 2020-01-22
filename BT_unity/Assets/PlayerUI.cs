@@ -12,7 +12,7 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private Text playerNameText;
         [SerializeField]
-        private Slider playerHpSlider;
+        private Image playerHp;
 
         PlayerManager target;
         [SerializeField]
@@ -34,9 +34,10 @@ namespace Com.MyCompany.MyGame
         #region MonoBehaviour CallBacks
         void Update()
         {
-            if (playerHpSlider != null)
+            if (playerHp != null)
             {
-                playerHpSlider.value = target.curr_Hp;
+                float fillAmount = (float)target.curr_Hp / (float)target.GetMaxHp();
+                playerHp.fillAmount = fillAmount;
             }
 
             if (target == null)

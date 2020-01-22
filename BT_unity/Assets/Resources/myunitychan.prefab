@@ -5308,6 +5308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curr_Hp: 0
   curr_Mp: 0
+  curr_Exp: 0
   maxSpeed: 5
   aclrt: 3
   Lv: 1
@@ -5375,10 +5376,10 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: Rest
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: JumpHeight
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: GravityControl
   - Type: 9
     SynchronizeType: 2

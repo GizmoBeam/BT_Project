@@ -11,14 +11,21 @@ namespace Com.MyCompany.MyGame
         #region Private Feilds
 
         [SerializeField]
-        private Text nameText;
+        private Text nameLvText;
         [SerializeField]
         private Text hpText;
         [SerializeField]
         private Text mpText;
         [SerializeField]
+        private Text expText;
+        [SerializeField]
         private Image hpImage;
-
+        [SerializeField]
+        private Image mpImage;
+        [SerializeField]
+        private Image expImage;
+        [SerializeField]
+        private Image portraitImage;
         private GameObject player;
         #endregion
 
@@ -27,18 +34,26 @@ namespace Com.MyCompany.MyGame
         void Start()
         {
             player = GameManager.Instance.playerCharacter;
-            nameText.text = PhotonNetwork.LocalPlayer.NickName;
+            nameLvText.text = PhotonNetwork.LocalPlayer.NickName + " / Lv: " + player.GetComponent<PlayerManager>().GetLevel();
+            
         }
 
         // Update is called once per frame
         void Update()
         {
+            nameLvText.text = PhotonNetwork.LocalPlayer.NickName + " / Lv: " + player.GetComponent<PlayerManager>().GetLevel();
             hpText.text = player.GetComponent<PlayerManager>().curr_Hp.ToString() 
                 + "/" + player.GetComponent<PlayerManager>().GetMaxHp().ToString();
             mpText.text = player.GetComponent<PlayerManager>().curr_Mp.ToString()
                 + "/" + player.GetComponent<PlayerManager>().GetMaxMp().ToString();
-            hpImage.fillAmount = player.GetComponent<PlayerManager>().curr_Hp 
-                / player.GetComponent<PlayerManager>().GetMaxHp();
+            expText.text = player.GetComponent<PlayerManager>().curr_Exp.ToString()
+                + "/" + player.GetComponent<PlayerManager>().GetMaxExp().ToString();
+            hpImage.fillAmount = (float)player.GetComponent<PlayerManager>().curr_Hp 
+                / (float)player.GetComponent<PlayerManager>().GetMaxHp();
+            mpImage.fillAmount = (float)player.GetComponent<PlayerManager>().curr_Mp
+                / (float)player.GetComponent<PlayerManager>().GetMaxMp();
+            expImage.fillAmount = (float)player.GetComponent<PlayerManager>().curr_Exp
+                / (float)player.GetComponent<PlayerManager>().GetMaxExp();
         }
     }
 }
