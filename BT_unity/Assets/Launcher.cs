@@ -26,9 +26,8 @@ namespace Com.MyCompany.MyGame
         public GameObject RoomPanel;
         public Text ListText;
         public Text RoomInfoText;
-        public Text[] ChatText;
-        public InputField ChatInput;
         public Button StartButton;
+        public ChatManager chatmanager;
 
         [Header("ETC")]
         public Text StatusText;
@@ -94,17 +93,7 @@ namespace Com.MyCompany.MyGame
         {
             if(PhotonNetwork.InRoom)
             {
-                if(Input.GetKeyUp(KeyCode.Return))
-                {
-                    if (ChatInput.text == "")
-                    {
-                        ChatInput.Select();
-                    }
-                    else
-                    {
-                        Send();
-                    }
-                }
+                ;
             }
             else
             {
@@ -177,8 +166,6 @@ namespace Com.MyCompany.MyGame
         {
             RoomPanel.SetActive(true);
             RoomRenewal();
-            ChatInput.text = "";
-            for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message) 
@@ -193,13 +180,13 @@ namespace Com.MyCompany.MyGame
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             RoomRenewal();
-            PV.RPC("ChatRPC", RpcTarget.All, "<color=red>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
+            chatmanager.PV.RPC("ChatRPC", RpcTarget.All, "<color=red>" + newPlayer.NickName + "님이 참가하셨습니다</color>\n");
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             RoomRenewal();
-            PV.RPC("ChatRPC", RpcTarget.All, "<color=red>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
+            chatmanager.PV.RPC("ChatRPC", RpcTarget.All, "<color=red>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>\n");
         }
 
         void RoomRenewal()
@@ -210,34 +197,6 @@ namespace Com.MyCompany.MyGame
             RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
 
-        #endregion
-
-
-        #region 채팅
-        public void Send()
-        {
-            string msg = PhotonNetwork.NickName + " : " + ChatInput.text;
-            PV.RPC("ChatRPC", RpcTarget.All, msg);
-            ChatInput.text = "";
-        }
-
-        [PunRPC] // RPC는 플레이어가 속해있는 방 모든 인원에게 전달한다
-        void ChatRPC(string msg)
-        {
-            bool isInput = false;
-            for (int i = 0; i < ChatText.Length; i++)
-                if (ChatText[i].text == "")
-                {
-                    isInput = true;
-                    ChatText[i].text = msg;
-                    break;
-                }
-            if (!isInput) // 꽉차면 한칸씩 위로 올림
-            {
-                for (int i = 1; i < ChatText.Length; i++) ChatText[i - 1].text = ChatText[i].text;
-                ChatText[ChatText.Length - 1].text = msg;
-            }
-        }
         #endregion
     }
 }

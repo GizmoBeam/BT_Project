@@ -94,7 +94,7 @@ fc108ce7d98c40ac0907e8ca7f500c76 UnityEngine.UI.dll:UnityEngine.UI.Text
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-a4a1b8834457654a1424a99ad5ac09a7 Assembly-CSharp.dll:Com.MyCompany.MyGame.Launcher
+41b14e097bb21ad64238f4a1ceb38009 Assembly-CSharp.dll:Com.MyCompany.MyGame.Launcher
 ab0d50a7d312400076be587269334d44 Assembly-CSharp.dll:UnityChan.AutoBlink
 11df54cb47bd74c537f3c732a94ea97d PhotonUnityNetworking.dll:Photon.Pun.PhotonHandler
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -135,6 +135,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 e7aa62e1f291228958626e122c23c8f0 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.ConnectAndJoinRandom
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
+7fb1acee35957b657aa47a68f7de7539 Assembly-CSharp.dll:.ChatManager
 de8c18ab5abf7bcb03cb32613822b11e Assembly-CSharp.dll:Com.MyCompany.MyGame.PlayerManager
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 8dd97b7e07915c183f8454a86716d325 Assembly-CSharp.dll:UnityChan.CameraController
