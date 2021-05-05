@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using PlayFab;
+using PlayFab.ClientModels;
 using UnityEngine.UI;
 
 
@@ -11,7 +13,10 @@ namespace Com.MyCompany.MyGame
     public class Launcher : MonoBehaviourPunCallbacks
     {
         [Header("DisconnectPanel")]
-        public InputField NickNameInput;
+        [SerializeField]
+        InputField LoginEmailInput;
+        [SerializeField]
+        InputField LoginPasswordInput;
 
         [Header("LobbyPanel")]
         public GameObject LobbyPanel;
@@ -28,6 +33,16 @@ namespace Com.MyCompany.MyGame
         public Text RoomInfoText;
         public Button StartButton;
         public ChatManager chatmanager;
+
+        [Header("RegistPanel")]
+        [SerializeField]
+        GameObject RegistPanel;
+        [SerializeField]
+        InputField EmailInput;
+        [SerializeField]
+        InputField PasswordInput;
+        [SerializeField]
+        InputField NicknameInput;
 
         [Header("ETC")]
         public Text StatusText;
@@ -83,9 +98,11 @@ namespace Com.MyCompany.MyGame
 
 
         #region 서버연결
+
         void Awake()
         {
-            if(PhotonNetwork.IsMasterClient)
+            //PlayFabSettings.staticSettings.TitleId = "95F58";
+            if (PhotonNetwork.IsMasterClient)
                 PhotonNetwork.AllocateSceneViewID(photonView);
         }
 
@@ -104,8 +121,8 @@ namespace Com.MyCompany.MyGame
 
         public void Connect()
         {
-            if(!PhotonNetwork.IsConnected)
-                PhotonNetwork.ConnectUsingSettings();
+            var request = new LoginWithEmailAddressRequest { Email = LoginEmailInput.text, Password = LoginPasswordInput.text };
+            PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
         }
 
         public override void OnConnectedToMaster()
@@ -117,10 +134,6 @@ namespace Com.MyCompany.MyGame
         {
             LobbyPanel.SetActive(true);
             RoomPanel.SetActive(false);
-            if (NickNameInput.text != "")
-                PhotonNetwork.LocalPlayer.NickName = NickNameInput.text;
-            else
-                PhotonNetwork.LocalPlayer.NickName = "DPM";
             WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 환영합니다";
             myList.Clear();
         }
@@ -129,6 +142,7 @@ namespace Com.MyCompany.MyGame
 
         public override void OnDisconnected(DisconnectCause cause)
         {
+            StatusText.text = cause.ToString();
             LobbyPanel.SetActive(false);
             RoomPanel.SetActive(false);
         }
@@ -197,6 +211,55 @@ namespace Com.MyCompany.MyGame
             RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
 
+        #endregion
+
+        #region 계정
+
+        private void OnLoginSuccess(LoginResult result)
+        {
+            Debug.Log("Congratulations, you made your first successful API call!");
+            if (!PhotonNetwork.IsConnected)
+                PhotonNetwork.ConnectUsingSettings();
+            var request = new GetAccountInfoRequest { Email = LoginEmailInput.text };
+            PlayFabClientAPI.GetAccountInfo(request, (result) => PhotonNetwork.LocalPlayer.NickName = result.AccountInfo.TitleInfo.DisplayName, (result) => Debug.Log("디스플레이네임 가져오기 실패"));
+        }
+
+        private void OnLoginFailure(PlayFabError error)
+        {
+            Debug.LogWarning("Something went wrong with your first API call.  :(");
+            Debug.LogError("Here's some debug information:");
+            Debug.LogError(error.GenerateErrorReport());
+        }
+
+        public void RegistButton()
+        {
+            RegistPanel.SetActive(true);
+            EmailInput.text = "";
+            PasswordInput.text = "";
+            NicknameInput.text = "";
+        }
+
+        public void ExitButton()
+        {
+            RegistPanel.SetActive(false);
+        }
+
+        public void Regist()
+        {
+            var request = new RegisterPlayFabUserRequest{ Email = EmailInput.text, Password = PasswordInput.text, Username = NicknameInput.text, DisplayName = NicknameInput.text };
+            PlayFabClientAPI.RegisterPlayFabUser(request, OnRegistSuccecss, OnRegistFailure);
+        }
+
+        void OnRegistSuccecss(RegisterPlayFabUserResult result)
+        {
+            RegistPanel.SetActive(false);
+            StatusText.text = "Regist Success";
+        }
+
+        void OnRegistFailure(PlayFabError error)
+        {
+            Debug.Log(error);
+        }
         #endregion
     }
 }

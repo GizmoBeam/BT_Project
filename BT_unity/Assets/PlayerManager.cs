@@ -42,25 +42,13 @@ namespace Com.MyCompany.MyGame
 
         #region Public Methods
 
-        public int GetMaxHp()
-        {
-            return max_Hp;
-        }
+        public int MaxHp => max_Hp;
 
-        public int GetMaxMp()
-        {
-            return max_Mp;
-        }
-        
-        public int GetMaxExp()
-        {
-            return max_Exp;
-        }
+        public int MaxMp => max_Mp;
 
-        public int GetLevel()
-        {
-            return Lv;
-        }
+        public int MaxExp => max_Exp;
+
+        public int Level => Lv;
 
         #endregion
 
@@ -96,7 +84,8 @@ namespace Com.MyCompany.MyGame
         float Attack_Speed = 1.5f;
         #endregion
 
-        #region Private Method
+        #region Private Field
+
         private int max_Lv = 200;
 
         float additional_Atk;
@@ -117,6 +106,15 @@ namespace Com.MyCompany.MyGame
         Vector3 dir;
         float currSpeed;
 
+        bool moveUp;
+        bool moveDown;
+        bool moveRight;
+        bool moveLeft;
+
+        #endregion
+
+        #region Private Method
+
         void Init()
         {
             max_Hp += (int)Str * 25;
@@ -135,6 +133,11 @@ namespace Com.MyCompany.MyGame
 
             Atk += mainstat * 2;
             Def += Dex * 0.01f;
+
+            moveUp = false;
+            moveDown = false;
+            moveLeft = false;
+            moveRight = false;
         }
 
         void LevelUp()
@@ -222,10 +225,38 @@ namespace Com.MyCompany.MyGame
 
         void Update()
         {
+
+            if (moveUp || moveRight || moveDown || moveLeft)
+            {
+                currSpeed = Mathf.Clamp(currSpeed += aclrt * Time.deltaTime, 0f, maxSpeed);
+            }
+            else
+            {
+                currSpeed = Mathf.Clamp(currSpeed -= aclrt * Time.deltaTime, 0f, maxSpeed);
+            }
+
             if (photonView.IsMine)
             {
                 ProcessInputs();
 
+                if (moveUp)
+                {
+                    dir.z = 1.0f;
+                }
+                if (moveLeft)
+                {
+                    dir.x = -1.0f;
+                }
+                if (moveDown)
+                {
+                    dir.z = -1.0f;
+                }
+                if (moveRight)
+                {
+                    dir.x = 1.0f;
+                }
+
+                dir = Vector3.Normalize(dir);
                 transform.rotation = Quaternion.LookRotation(dir);
                 characterController.Move(dir * currSpeed * Time.deltaTime);
                 animator.SetFloat("Speed", currSpeed);
@@ -238,6 +269,7 @@ namespace Com.MyCompany.MyGame
 
             if (curr_Exp >= max_Exp)
                 LevelUp();
+
         }
 
         void OnTriggerEnter(Collider other)
@@ -266,29 +298,75 @@ namespace Com.MyCompany.MyGame
 
         void ProcessInputs()
         {
-            if (Input.GetMouseButton(MouseRight))
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                {
-                    targetPos = hit.point;
-                    dir = Vector3.Normalize(targetPos - transform.position);
-                    dir.y = 0f;
-                    currSpeed = Mathf.Clamp(currSpeed += aclrt * Time.deltaTime, 0f, maxSpeed);
-                }
+                moveUp = true;
             }
-            else
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                currSpeed = Mathf.Clamp(currSpeed -= aclrt * Time.deltaTime, 0f, maxSpeed);
+                moveLeft = true;
             }
-            if(Input.GetKeyUp(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                moveDown = true;
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                moveRight = true;
+            }
+
+            if (moveUp && moveDown)
+            {
+                moveUp = false;
+                moveDown = false;
+            }
+            if (moveLeft && moveRight)
+            {
+                moveLeft = false;
+                moveRight = false;
+            }
+
+            //if (Input.GetMouseButton(MouseRight))
+            //{
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    RaycastHit hit;
+            //    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            //    {
+            //        targetPos = hit.point;
+            //        dir = Vector3.Normalize(targetPos - transform.position);
+            //        dir.y = 0f;
+            //        currSpeed = Mathf.Clamp(currSpeed += aclrt * Time.deltaTime, 0f, maxSpeed);
+            //    }
+            //}
+            //else
+            //{
+            //    currSpeed = Mathf.Clamp(currSpeed -= aclrt * Time.deltaTime, 0f, maxSpeed);
+            //}
+
+
+            if (Input.GetKeyUp(KeyCode.Alpha1))
             {
                 curr_Hp -= 10;
             }
-            if(Input.GetKeyUp(KeyCode.Alpha2))
+            if (Input.GetKeyUp(KeyCode.Alpha2))
             {
                 curr_Exp += 100;
+            }
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                moveUp = false;
+            }
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                moveLeft = false;
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                moveDown = false;
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                moveRight = false;
             }
         }
 

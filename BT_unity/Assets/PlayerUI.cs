@@ -36,7 +36,7 @@ namespace Com.MyCompany.MyGame
         {
             if (playerHp != null)
             {
-                float fillAmount = (float)target.curr_Hp / (float)target.GetMaxHp();
+                float fillAmount = (float)target.curr_Hp / (float)target.MaxHp;
                 playerHp.fillAmount = fillAmount;
             }
 

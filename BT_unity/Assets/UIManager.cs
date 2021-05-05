@@ -34,26 +34,26 @@ namespace Com.MyCompany.MyGame
         void Start()
         {
             player = GameManager.Instance.playerCharacter;
-            nameLvText.text = PhotonNetwork.LocalPlayer.NickName + " / Lv: " + player.GetComponent<PlayerManager>().GetLevel();
+            nameLvText.text = PhotonNetwork.LocalPlayer.NickName + " / Lv: " + player.GetComponent<PlayerManager>().Level;
             
         }
 
         // Update is called once per frame
         void Update()
         {
-            nameLvText.text = PhotonNetwork.LocalPlayer.NickName + " / Lv: " + player.GetComponent<PlayerManager>().GetLevel();
+            nameLvText.text = PhotonNetwork.LocalPlayer.NickName + " / Lv: " + player.GetComponent<PlayerManager>().Level;
             hpText.text = player.GetComponent<PlayerManager>().curr_Hp.ToString() 
-                + "/" + player.GetComponent<PlayerManager>().GetMaxHp().ToString();
+                + "/" + player.GetComponent<PlayerManager>().MaxHp.ToString();
             mpText.text = player.GetComponent<PlayerManager>().curr_Mp.ToString()
-                + "/" + player.GetComponent<PlayerManager>().GetMaxMp().ToString();
+                + "/" + player.GetComponent<PlayerManager>().MaxMp.ToString();
             expText.text = player.GetComponent<PlayerManager>().curr_Exp.ToString()
-                + "/" + player.GetComponent<PlayerManager>().GetMaxExp().ToString();
+                + "/" + player.GetComponent<PlayerManager>().MaxExp.ToString();
             hpImage.fillAmount = (float)player.GetComponent<PlayerManager>().curr_Hp 
-                / (float)player.GetComponent<PlayerManager>().GetMaxHp();
+                / (float)player.GetComponent<PlayerManager>().MaxHp;
             mpImage.fillAmount = (float)player.GetComponent<PlayerManager>().curr_Mp
-                / (float)player.GetComponent<PlayerManager>().GetMaxMp();
+                / (float)player.GetComponent<PlayerManager>().MaxMp;
             expImage.fillAmount = (float)player.GetComponent<PlayerManager>().curr_Exp
-                / (float)player.GetComponent<PlayerManager>().GetMaxExp();
+                / (float)player.GetComponent<PlayerManager>().MaxExp;
         }
     }
 }

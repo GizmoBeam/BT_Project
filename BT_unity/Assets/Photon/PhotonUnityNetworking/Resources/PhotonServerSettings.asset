@@ -18,23 +18,20 @@ MonoBehaviour:
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: kr
+    FixedRegion: 
     Server: 
-    Port: 8000
-    Protocol: 1
+    Port: 0
+    Protocol: 0
     EnableLobbyStatistics: 0
-    NetworkLogging: 2
-  PunLogging: 2
+    NetworkLogging: 1
+  PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - ChatRPC
   - ClickRpc
   - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - ChatRPC
   - GameStartRPC
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
