@@ -5,15 +5,15 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637557993552347422
-    m_Hash: 1174011302
+      ticks: 638078302467978249
+    m_Hash: 1732915536
   m_LockFileStatus:
     m_FilePath: C:/Users/dkekf/Desktop/BT_Project/BT_unity/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637557993610005510
+      ticks: 638078306605662286
     m_Hash: 2259703593
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -179,6 +179,8 @@ m_PackageAssets:
         - 3.5.0
         - 3.5.2
         - 3.6.1
+        - 3.7.0
+        - 3.7.1
         compatible:
         - 0.0.3
         - 0.0.4
@@ -217,6 +219,8 @@ m_PackageAssets:
         - 3.5.0
         - 3.5.2
         - 3.6.1
+        - 3.7.0
+        - 3.7.1
         verified: 3.6.1
       dependencies:
       - name: com.unity.ugui
@@ -414,6 +418,7 @@ m_PackageAssets:
         - 1.3.7
         - 1.3.8
         - 1.3.9
+        - 1.5.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -426,6 +431,7 @@ m_PackageAssets:
         - 2.1.0-preview.6
         compatible:
         - 1.3.9
+        - 1.5.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -514,6 +520,8 @@ m_PackageAssets:
         - 3.0.2
         - 3.0.3
         - 3.0.4
+        - 3.0.5
+        - 3.0.6
         compatible:
         - 1.0.2
         - 1.0.6
@@ -537,6 +545,8 @@ m_PackageAssets:
         - 3.0.2
         - 3.0.3
         - 3.0.4
+        - 3.0.5
+        - 3.0.6
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -792,6 +802,8 @@ m_PackageAssets:
         - 3.0.0-pre.5
         - 3.0.0-pre.6
         - 3.0.1
+        - 3.0.2
+        - 3.1.0
         compatible:
         - 0.0.3
         - 0.0.4
@@ -825,6 +837,8 @@ m_PackageAssets:
         - 3.0.0-pre.5
         - 3.0.0-pre.6
         - 3.0.1
+        - 3.0.2
+        - 3.1.0
         verified: 2.2.2
       dependencies:
       - name: com.unity.ugui
@@ -907,9 +921,11 @@ m_PackageAssets:
         - 1.1.19
         - 1.1.20
         - 1.1.22
+        - 1.1.24
         compatible:
         - 1.1.22
-        verified: 1.1.22
+        - 1.1.24
+        verified: 1.1.24
       dependencies:
       - name: com.unity.ext.nunit
         version: 1.0.6
@@ -1023,6 +1039,8 @@ m_PackageAssets:
         - 1.5.1
         - 1.5.3
         - 1.5.4
+        - 1.5.5
+        - 1.5.6
         - 2.0.0
         - 2.0.1-preview.1
         - 2.0.1
@@ -1042,6 +1060,8 @@ m_PackageAssets:
         - 2.1.1
         - 2.1.3
         - 2.1.4
+        - 2.1.5
+        - 2.1.6
         - 3.0.0-preview.1
         - 3.0.0-preview.3
         - 3.0.0-preview.4
@@ -1057,11 +1077,15 @@ m_PackageAssets:
         - 3.0.1
         - 3.0.3
         - 3.0.4
+        - 3.0.5
+        - 3.0.6
         compatible:
         - 3.0.1
         - 3.0.3
         - 3.0.4
-        verified: 3.0.4
+        - 3.0.5
+        - 3.0.6
+        verified: 3.0.6
       dependencies:
       - name: com.unity.ugui
         version: 1.0.0
@@ -1163,6 +1187,8 @@ m_PackageAssets:
         - 1.4.4
         - 1.4.5
         - 1.4.6
+        - 1.4.7
+        - 1.4.8
         - 1.5.0-pre.2
         - 1.5.0-preview.1
         - 1.5.0-preview.2
@@ -1173,7 +1199,11 @@ m_PackageAssets:
         - 1.5.1-pre.2
         - 1.5.1-pre.3
         - 1.5.2
+        - 1.5.4
+        - 1.5.5
         - 1.6.0-pre.1
+        - 1.6.0-pre.3
+        - 1.6.0-pre.4
         compatible:
         - 1.2.6
         - 1.2.7
@@ -1213,6 +1243,8 @@ m_PackageAssets:
         - 1.4.4
         - 1.4.5
         - 1.4.6
+        - 1.4.7
+        - 1.4.8
         - 1.5.0-pre.2
         - 1.5.0-preview.1
         - 1.5.0-preview.2
@@ -1223,8 +1255,12 @@ m_PackageAssets:
         - 1.5.1-pre.2
         - 1.5.1-pre.3
         - 1.5.2
+        - 1.5.4
+        - 1.5.5
         - 1.6.0-pre.1
-        verified: 1.4.6
+        - 1.6.0-pre.3
+        - 1.6.0-pre.4
+        verified: 1.4.8
       dependencies: []
       resolvedDependencies: []
       keywords:
